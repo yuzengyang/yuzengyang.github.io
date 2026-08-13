@@ -37,8 +37,19 @@ body {
   background: var(--morandi-100);
 }
 
-a { color: var(--morandi-500); text-decoration: none; transition: color 0.15s; }
-a:hover { color: var(--morandi-600); text-decoration: underline; }
+a {
+  color: var(--morandi-600);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--morandi-300);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+
+a:hover {
+  color: var(--morandi-700);
+  text-decoration-color: var(--morandi-500);
+}
 
 /* --------------------------------------------------------------------------
    Navigation
@@ -70,6 +81,7 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
   font-size: 18px;
   color: var(--morandi-700);
   letter-spacing: 0.2px;
+  text-decoration: none;
   transition: color 0.2s;
 }
 
@@ -88,6 +100,7 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
   font-size: 15px;
   color: var(--text-muted);
   border-radius: 8px;
+  text-decoration: none;
   transition: color 0.2s, background 0.2s;
 }
 
@@ -192,8 +205,8 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
   vertical-align: -3px;
 }
 
-.contact-list a { color: var(--text-muted); }
-.contact-list a:hover { color: var(--morandi-600); }
+.contact-list a { color: var(--morandi-600); }
+.contact-list a:hover { color: var(--morandi-700); }
 
 /* --------------------------------------------------------------------------
    Sections
@@ -296,7 +309,7 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
   margin-bottom: 2px;
 }
 
-.pub-title a { color: var(--text-main); }
+.pub-title a { color: var(--text-main); text-decoration: none; }
 .pub-title a:hover { color: var(--morandi-600); text-decoration: underline; }
 
 .pub-journal { font-size: 15.5px; color: var(--text-muted); }
@@ -349,8 +362,8 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
 /* Acknowledgments */
 .ack-note { color: var(--text-muted); font-size: 16px; margin-bottom: 10px; }
 .ack-note:last-child { margin-bottom: 0; }
-.ack-note a { color: var(--morandi-500); }
-.ack-note a:hover { color: var(--morandi-600); }
+.ack-note a { color: var(--morandi-600); }
+.ack-note a:hover { color: var(--morandi-700); }
 
 /* Footer */
 .footer {
