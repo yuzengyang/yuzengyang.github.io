@@ -1,0 +1,332 @@
+/* ==========================================================================
+   Zengyang Yu — Personal Website
+   Morandi blue theme · clean academic layout
+   ========================================================================== */
+
+:root {
+  /* Morandi blue palette */
+  --morandi-100: #eef2f6;   /* page background (light) */
+  --morandi-200: #dde5ec;   /* borders */
+  --morandi-300: #b9c8d6;   /* secondary accents */
+  --morandi-400: #8fa3b8;   /* light blue-grey */
+  --morandi-500: #6e859c;   /* primary */
+  --morandi-600: #526b83;   /* hover */
+  --morandi-700: #3d5268;   /* headings / dark accents */
+
+  --text-main: #2c3a47;
+  --text-muted: #5f7183;
+  --surface: #ffffff;
+
+  --font-body: "Segoe UI", "Helvetica Neue", Arial, "PingFang SC",
+               "Microsoft YaHei", sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(61, 82, 104, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-main);
+  background: var(--morandi-100);
+}
+
+a { color: var(--morandi-500); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--morandi-600); text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   Navigation
+   -------------------------------------------------------------------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--morandi-200);
+  box-shadow: var(--shadow);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+}
+
+.nav-brand {
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--morandi-700);
+  letter-spacing: 0.2px;
+}
+
+.nav-brand:hover { text-decoration: none; color: var(--morandi-600); }
+
+.nav-links a {
+  margin-left: 22px;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.nav-links a.active {
+  color: var(--morandi-600);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Layout
+   -------------------------------------------------------------------------- */
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+/* --------------------------------------------------------------------------
+   Header (photo + identity)
+   -------------------------------------------------------------------------- */
+
+.header {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  margin-bottom: 48px;
+}
+
+.photo {
+  flex-shrink: 0;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(61, 82, 104, 0.18);
+}
+
+.identity h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--morandi-700);
+  margin-bottom: 6px;
+}
+
+.identity .title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--morandi-500);
+  margin-bottom: 14px;
+}
+
+.contact-list {
+  list-style: none;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.contact-list .icon {
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+  color: var(--morandi-400);
+}
+
+.contact-list a { color: var(--text-muted); }
+.contact-list a:hover { color: var(--morandi-600); }
+
+/* --------------------------------------------------------------------------
+   Sections
+   -------------------------------------------------------------------------- */
+
+.section { margin-bottom: 44px; }
+
+.section-title {
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--morandi-700);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--morandi-200);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title .sec-icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--morandi-100);
+  color: var(--morandi-500);
+}
+
+.section-title .sec-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Bio */
+.bio p { margin-bottom: 12px; }
+
+.bio strong { color: var(--morandi-700); }
+
+/* Education */
+.edu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--morandi-200);
+}
+
+.edu-item:last-child { border-bottom: none; }
+
+.edu-degree { font-weight: 600; font-size: 17.5px; color: var(--text-main); }
+.edu-status { font-size: 15px; font-weight: 500; color: var(--morandi-400); }
+.edu-school { color: var(--text-muted); font-size: 16px; }
+.edu-years {
+  flex-shrink: 0;
+  font-size: 15px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* News */
+.news-item {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--morandi-200);
+  align-items: baseline;
+}
+
+.news-item:last-child { border-bottom: none; }
+
+.news-date {
+  flex-shrink: 0;
+  width: 76px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--morandi-500);
+  font-variant-numeric: tabular-nums;
+}
+
+.news-text { color: var(--text-main); }
+
+/* Publications */
+.pub-item { margin-bottom: 26px; }
+
+.pub-authors { font-size: 16px; color: var(--text-muted); margin-bottom: 2px; }
+
+.pub-authors .self {
+  font-weight: 700;
+  color: var(--morandi-700);
+}
+
+.pub-title {
+  font-weight: 600;
+  font-size: 17.5px;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.pub-title a { color: var(--text-main); }
+.pub-title a:hover { color: var(--morandi-600); text-decoration: underline; }
+
+.pub-journal { font-size: 15.5px; color: var(--text-muted); }
+
+.pub-journal .journal-name { font-style: italic; }
+
+.pub-journal .doi-link {
+  margin-left: 6px;
+  font-size: 14px;
+  font-style: normal;
+}
+
+/* Empty placeholders (Working papers / WIP) */
+.empty-note {
+  color: var(--text-muted);
+  font-size: 16px;
+  font-style: italic;
+  padding: 6px 0 2px;
+}
+
+/* Presentations */
+.pres-item {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--morandi-200);
+  align-items: baseline;
+}
+
+.pres-item:last-child { border-bottom: none; }
+
+.pres-name { font-weight: 500; color: var(--text-main); }
+
+.pres-zh {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 14.5px;
+  text-align: right;
+}
+
+/* Page title for inner pages */
+.page-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--morandi-700);
+  margin-bottom: 28px;
+}
+
+/* Acknowledgments */
+.ack-note { color: var(--text-muted); font-size: 16px; margin-bottom: 10px; }
+.ack-note:last-child { margin-bottom: 0; }
+.ack-note a { color: var(--morandi-500); }
+.ack-note a:hover { color: var(--morandi-600); }
+
+/* Footer */
+.footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 24px 36px;
+  border-top: 1px solid var(--morandi-200);
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .header { flex-direction: column; align-items: center; text-align: center; }
+  .contact-list li { justify-content: center; }
+  .edu-item { flex-direction: column; gap: 2px; }
+  .news-item { flex-direction: column; gap: 2px; }
+  .news-date { width: auto; }
+}
