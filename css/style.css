@@ -148,6 +148,12 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
   color: var(--morandi-400);
 }
 
+.contact-list .icon svg {
+  width: 17px;
+  height: 17px;
+  vertical-align: -3px;
+}
+
 .contact-list a { color: var(--text-muted); }
 .contact-list a:hover { color: var(--morandi-600); }
 
