@@ -48,9 +48,11 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
   border-bottom: 1px solid var(--morandi-200);
-  box-shadow: var(--shadow);
+  box-shadow: 0 1px 12px rgba(61, 82, 104, 0.08);
 }
 
 .nav-inner {
@@ -60,28 +62,82 @@ a:hover { color: var(--morandi-600); text-decoration: underline; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 58px;
+  height: 62px;
 }
 
 .nav-brand {
-  font-weight: 600;
-  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 18px;
   color: var(--morandi-700);
   letter-spacing: 0.2px;
+  transition: color 0.2s;
 }
 
 .nav-brand:hover { text-decoration: none; color: var(--morandi-600); }
 
-.nav-links a {
-  margin-left: 22px;
-  font-size: 15px;
-  color: var(--text-muted);
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--morandi-400), var(--morandi-600));
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Georgia, "Times New Roman", serif;
+  box-shadow: 0 2px 6px rgba(82, 107, 131, 0.35);
 }
 
-.nav-links a.active {
-  color: var(--morandi-600);
-  font-weight: 600;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
+
+.nav-links a {
+  position: relative;
+  padding: 7px 14px;
+  margin-left: 2px;
+  font-size: 15px;
+  color: var(--text-muted);
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--morandi-400), var(--morandi-600));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: var(--morandi-600);
+  background: var(--morandi-100);
+  text-decoration: none;
+}
+
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-links a.active {
+  color: var(--morandi-700);
+  font-weight: 600;
+  background: var(--morandi-100);
+}
+
+.nav-links a.active::after { transform: scaleX(1); }
 
 /* --------------------------------------------------------------------------
    Layout
