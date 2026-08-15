@@ -141,5 +141,17 @@
     © 2026 Zengyang Yu · Last updated: August 2026
   </footer>
 
+  <script>
+    (function () {
+      var nav = document.querySelector('.nav');
+      var onScroll = function () {
+        if (nav) {
+          nav.classList.toggle('nav--scrolled', window.scrollY > 40);
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
