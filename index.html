@@ -124,6 +124,7 @@
         </span>
         News
       </h2>
+      <div class="news-scroll">
 
       <div class="news-item">
         <div class="news-date">Jul 2026</div>
@@ -158,7 +159,8 @@
           of Zhongnan University of Economics and Law.
         </div>
       </div>
-    </section>
+    
+      </div></section>
 
     <!-- Acknowledgments -->
     <section class="section" id="acknowledgments">
@@ -204,6 +206,17 @@
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
+
+      // News 滚动容器：恰好显示 4 条，超出滚动
+      var newsScroll = document.querySelector('.news-scroll');
+      if (newsScroll) {
+        var newsItems = newsScroll.querySelectorAll('.news-item');
+        var h = 0;
+        for (var i = 0; i < newsItems.length && i < 4; i++) {
+          h += newsItems[i].offsetHeight;
+        }
+        newsScroll.style.maxHeight = h + 'px';
+      }
     })();
   </script>
 </body>

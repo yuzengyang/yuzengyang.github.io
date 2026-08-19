@@ -303,6 +303,37 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
+/* 滚动容器：显示固定条数，超出滚动（max-height 由脚本按条目高度计算） */
+.news-scroll,
+.pubs-scroll {
+  max-height: 260px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--morandi-300) transparent;
+  padding-right: 6px;
+}
+
+.news-scroll::-webkit-scrollbar,
+.pubs-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.news-scroll::-webkit-scrollbar-thumb,
+.pubs-scroll::-webkit-scrollbar-thumb {
+  background: var(--morandi-300);
+  border-radius: 3px;
+}
+
+.news-scroll::-webkit-scrollbar-thumb:hover,
+.pubs-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--morandi-400);
+}
+
+.news-scroll::-webkit-scrollbar-track,
+.pubs-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 /* News */
 .news-item {
   display: flex;

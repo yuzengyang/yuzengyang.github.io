@@ -37,6 +37,7 @@
         </span>
         Publications
       </h2>
+      <div class="pubs-scroll">
 
       <div class="pub-item">
         <div class="pub-authors">
@@ -69,7 +70,8 @@
           <a class="doi-link" href="https://doi.org/10.1016/j.eneco.2026.109496" target="_blank" rel="noopener">[DOI]</a>
         </div>
       </div>
-    </section>
+    
+      </div></section>
 
     <!-- Working Papers -->
     <section class="section" id="working-papers">
@@ -151,6 +153,22 @@
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
+
+      // Publications 滚动容器：恰好显示 3 条，超出滚动
+      var pubsScroll = document.querySelector('.pubs-scroll');
+      if (pubsScroll) {
+        var pubItems = pubsScroll.querySelectorAll('.pub-item');
+        var h = 0;
+        var n = Math.min(pubItems.length, 3);
+        for (var i = 0; i < n; i++) {
+          h += pubItems[i].offsetHeight;
+        }
+        if (n > 0) {
+          var mb = parseInt(getComputedStyle(pubItems[n - 1]).marginBottom) || 0;
+          h += mb;
+        }
+        pubsScroll.style.maxHeight = h + 'px';
+      }
     })();
   </script>
 </body>
