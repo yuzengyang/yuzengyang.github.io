@@ -127,20 +127,20 @@
       <div class="news-scroll">
 
       <div class="news-item">
-        <div class="news-date">Jul 2026</div>
-        <div class="news-text">
-          Our paper “<strong>Lighting up the future: The long-term effects of preschool exposure
-          to electrification on female employment in rural China</strong>” has been published in
-          <em>Energy Economics</em>.
-        </div>
-      </div>
-
-      <div class="news-item">
         <div class="news-date">Mar 2026</div>
         <div class="news-text">
           Our paper “<strong>Industrial policy and human capital accumulation of urban children:
           Evidence from the Third Front Construction in China</strong>” has been published in
           <em>Economic Modelling</em>.
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">Jul 2026</div>
+        <div class="news-text">
+          Our paper “<strong>Lighting up the future: The long-term effects of preschool exposure
+          to electrification on female employment in rural China</strong>” has been published in
+          <em>Energy Economics</em>.
         </div>
       </div>
 
@@ -193,7 +193,7 @@
   </main>
 
   <footer class="footer">
-    © 2026 Zengyang Yu · Last updated: August 2026
+    © 2026 Zengyang Yu · Last updated: September 2026
   </footer>
 
   <script>
@@ -207,15 +207,22 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // News 滚动容器：恰好显示 4 条，超出滚动
+      // News 滚动容器：恰好显示 5 条，超出滚动
+      var SHOW_NEWS = 5;
       var newsScroll = document.querySelector('.news-scroll');
       if (newsScroll) {
-        var newsItems = newsScroll.querySelectorAll('.news-item');
-        var h = 0;
-        for (var i = 0; i < newsItems.length && i < 4; i++) {
-          h += newsItems[i].offsetHeight;
-        }
-        newsScroll.style.maxHeight = h + 'px';
+        var fitNewsScroll = function () {
+          var newsItems = newsScroll.querySelectorAll('.news-item');
+          if (!newsItems.length) return;
+          var h = 0;
+          var n = Math.min(newsItems.length, SHOW_NEWS);
+          for (var i = 0; i < n; i++) {
+            h += newsItems[i].offsetHeight;
+          }
+          newsScroll.style.maxHeight = h + 'px';
+        };
+        fitNewsScroll();
+        window.addEventListener('resize', fitNewsScroll, { passive: true });
       }
     })();
   </script>

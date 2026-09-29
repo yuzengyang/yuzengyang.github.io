@@ -1,7 +1,10 @@
 # Zengyang Yu — Personal Website
 
 Personal academic homepage of Zengyang Yu (于增洋), Ph.D. candidate in
-Economics at the Jinhe Center for Economic Research, Xi'an Jiaotong University.
+Theoretical Economics at the Jinhe Center for Economic Research,
+Xi'an Jiaotong University.
+
+Live at <https://yuzengyang.github.io/>.
 
 ## Pages
 
@@ -9,23 +12,37 @@ Economics at the Jinhe Center for Economic Research, Xi'an Jiaotong University.
 - `research.html` — Research: publications, working papers, work in progress, presentations
 - `css/style.css` — shared stylesheet (Morandi blue theme)
 - `images/photo.jpg` — profile photo
-- `favicon.svg` — site icon (letter "Y")
+- `favicon.svg` — site icon (geometric "Y" mark)
+
+Both pages share navigation and footer markup; the active nav link is marked
+with `class="active"`, and a small inline script toggles `.nav--scrolled` on
+scroll and sizes the news / publications scroll containers.
 
 ## Local preview
 
 ```bash
 python -m http.server 8000
-# open http://localhost:8000
+# then open http://localhost:8000
 ```
 
-## Deploy to GitHub Pages
+## Deploy
 
-1. Create a repository named `yourname.github.io` on GitHub.
-2. Push all files in this folder to the repository's default branch.
-3. The site will be live at `https://yourname.github.io/`.
+The repository is named `yuzengyang.github.io`, so GitHub Pages serves the
+default branch (`main`) at the site root with no build step.
+
+```bash
+git add -A
+git commit -m "update: ..."
+git push origin main
+```
+
+Changes go live about one to two minutes after a push.
 
 ## Notes
 
-- Theme: Morandi blue, single shared stylesheet (`css/style.css`).
-- All data (education, publications, ORCID) is drawn from the author's
-  public ORCID record and published journal pages.
+- Theme: Morandi blue (`:root` variables in `css/style.css`); every colour is
+  taken from that palette.
+- Publication details (journal, volume, article number, DOI) match the
+  publisher records; links resolve to the DOI landing pages.
+- When the content changes, update the `Last updated` date in the footer of
+  both pages.

@@ -140,7 +140,7 @@
   </main>
 
   <footer class="footer">
-    © 2026 Zengyang Yu · Last updated: August 2026
+    © 2026 Zengyang Yu · Last updated: September 2026
   </footer>
 
   <script>
@@ -154,20 +154,23 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // Publications 滚动容器：恰好显示 3 条，超出滚动
+      // Publications 滚动容器：恰好显示 5 条，超出滚动
+      var SHOW_PUBS = 5;
       var pubsScroll = document.querySelector('.pubs-scroll');
       if (pubsScroll) {
-        var pubItems = pubsScroll.querySelectorAll('.pub-item');
-        var h = 0;
-        var n = Math.min(pubItems.length, 3);
-        for (var i = 0; i < n; i++) {
-          h += pubItems[i].offsetHeight;
-        }
-        if (n > 0) {
-          var mb = parseInt(getComputedStyle(pubItems[n - 1]).marginBottom) || 0;
-          h += mb;
-        }
-        pubsScroll.style.maxHeight = h + 'px';
+        var fitPubsScroll = function () {
+          var pubItems = pubsScroll.querySelectorAll('.pub-item');
+          if (!pubItems.length) return;
+          var h = 0;
+          var n = Math.min(pubItems.length, SHOW_PUBS);
+          for (var i = 0; i < n; i++) {
+            h += pubItems[i].offsetHeight;
+          }
+          h += parseInt(getComputedStyle(pubItems[n - 1]).marginBottom) || 0;
+          pubsScroll.style.maxHeight = h + 'px';
+        };
+        fitPubsScroll();
+        window.addEventListener('resize', fitPubsScroll, { passive: true });
       }
     })();
   </script>
