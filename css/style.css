@@ -11,7 +11,8 @@
   --morandi-400: #8fa3b8;   /* light blue-grey · 仅装饰，勿用于文字 */
   --morandi-500: #6e859c;   /* primary · 对比度 3.27，仅可用于大字/图形 */
   --morandi-600: #526b83;   /* links / hover · 4.74（AA） */
-  --morandi-700: #3d5268;   /* headings / dark accents · 7.06 */
+  --morandi-700: #3d5268;   /* headings / dark accents · 6.90 */
+  --morandi-800: #34465a;   /* heading hover · 8.53（同色相再深一档） */
 
   /* ---- Text colours ----
      这一组是把莫兰迪色沿同色相(H210)加深后得到的"可读版本"，
@@ -297,7 +298,11 @@ body::after {
    Sections
    -------------------------------------------------------------------------- */
 
-.section { margin-bottom: 46px; }
+.section {
+  margin-bottom: 46px;
+  /* 顶部导航是 sticky 的，锚点跳转时留出它的高度，标题不会被盖住 */
+  scroll-margin-top: 76px;
+}
 
 /* 栏目标题：Georgia 常规体 + 1px 发丝线。
    原来 25px/700 + 2px 底线比姓名还抢眼，层级是平的；
@@ -326,11 +331,73 @@ body::after {
   border-radius: 7px;
   background: var(--morandi-100);
   color: var(--morandi-500);
+  transition: background 0.22s ease, color 0.22s ease,
+              transform 0.22s cubic-bezier(0.22, 0.9, 0.28, 1);
 }
 
 .section-title .sec-icon svg {
   width: 16px;
   height: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   栏目标题的"放大镜"微动效
+   三处联动，都只改 transform / color，不动布局，所以不会引起跳动：
+     1) 图标   放大一点点（像对焦）        → transform: scale()
+     2) 标题字 转深一档，变得明显          → color
+     3) 标题下 浮出一道同宽短强调线        → transform: scaleX()
+   只在"悬浮"与"键盘聚焦"触发；触屏没有悬浮态，本来就不会触发，无害。
+   -------------------------------------------------------------------------- */
+
+.section-title .sec-label {
+  display: inline-block;
+  position: relative;
+  transition: color 0.22s ease;
+}
+
+/* 短强调线：与标题同宽，从左向右展开 */
+.section-title .sec-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--morandi-600);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.26s cubic-bezier(0.22, 0.9, 0.28, 1);
+}
+
+.section-title:hover .sec-icon,
+.section-title:focus-within .sec-icon {
+  color: var(--morandi-800);
+  background: var(--morandi-200);
+  transform: scale(1.12);
+}
+
+.section-title:hover .sec-label,
+.section-title:focus-within .sec-label {
+  color: var(--morandi-800);
+}
+
+.section-title:hover .sec-label::after,
+.section-title:focus-within .sec-label::after {
+  transform: scaleX(1);
+}
+
+/* 无障碍：系统开了"减少动态效果"时，立刻切换、不做位移动画 */
+@media (prefers-reduced-motion: reduce) {
+  .section-title .sec-icon,
+  .section-title .sec-label,
+  .section-title .sec-label::after {
+    transition: none;
+  }
+  .section-title:hover .sec-icon,
+  .section-title:focus-within .sec-icon {
+    transform: none;
+  }
 }
 
 /* Bio */
