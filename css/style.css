@@ -434,33 +434,28 @@ body::after {
   font-variant-numeric: tabular-nums;
 }
 
-/* 滚动容器：显示固定条数，超出滚动（max-height 由脚本按条目高度计算） */
-.news-scroll,
-.pubs-scroll {
+/* 滚动容器：仅 News 使用（Publications 已改为整页展开、无滚轮） */
+.news-scroll {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--morandi-300) transparent;
   padding-right: 6px;
 }
 
-.news-scroll::-webkit-scrollbar,
-.pubs-scroll::-webkit-scrollbar {
+.news-scroll::-webkit-scrollbar {
   width: 6px;
 }
 
-.news-scroll::-webkit-scrollbar-thumb,
-.pubs-scroll::-webkit-scrollbar-thumb {
+.news-scroll::-webkit-scrollbar-thumb {
   background: var(--morandi-300);
   border-radius: 3px;
 }
 
-.news-scroll::-webkit-scrollbar-thumb:hover,
-.pubs-scroll::-webkit-scrollbar-thumb:hover {
+.news-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--morandi-400);
 }
 
-.news-scroll::-webkit-scrollbar-track,
-.pubs-scroll::-webkit-scrollbar-track {
+.news-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 
@@ -488,39 +483,96 @@ body::after {
 
 .news-text { color: var(--text-main); font-size: 15.5px; line-height: 1.68; }
 
-/* Publications */
-.pub-item { margin-bottom: 26px; }
+/* --------------------------------------------------------------------------
+   Publications
+   版式：第一行论文题目 → 第二行作者与出版信息 → 下面左图右"一句话概括"。
+   题目用 Georgia Bold，是全页最先被看到的东西。
+   -------------------------------------------------------------------------- */
 
-.pub-authors { font-size: 14.5px; color: var(--text-muted); margin-bottom: 3px; }
-
-.pub-authors .self {
-  font-weight: 600;
-  color: var(--text-soft);
+.pub-item {
+  margin-bottom: 40px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid var(--morandi-200);
 }
 
-/* 论文题目：Georgia Bold —— 在列表里第一个被看到 */
+.pub-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
 .pub-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 17px;
-  line-height: 1.42;
+  font-size: 17.5px;
+  line-height: 1.4;
   letter-spacing: -0.1px;
   color: var(--text-soft);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .pub-title a { color: var(--text-soft); text-decoration: none; }
 .pub-title a:hover { color: var(--morandi-600); text-decoration: underline; }
 
-.pub-journal { font-size: 14.5px; color: var(--text-faint); }
+/* 第二行：作者 · 期刊 卷号 （DOI） */
+.pub-meta {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-faint);
+  margin-bottom: 18px;
+}
 
-.pub-journal .journal-name { font-style: italic; }
+.pub-meta .self {
+  font-weight: 600;
+  color: var(--text-soft);
+}
 
-.pub-journal .doi-link {
-  margin-left: 6px;
-  font-size: 13px;
-  letter-spacing: 0.3px;
-  font-style: normal;
+.pub-meta .sep {
+  margin: 0 6px;
+  color: var(--morandi-300);
+}
+
+.pub-meta em { font-style: italic; }
+
+.pub-meta .doi-link {
+  margin-left: 8px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* 图 + 概括：左图右文 */
+.pub-body {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.pub-figure {
+  flex: 0 0 auto;
+  width: 168px;
+}
+
+.pub-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 一句话概括 */
+.pub-summary {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+/* Working Papers / Work in Progress：留白容器，条目为空时给一句提示 */
+.work-list {
+  padding: 4px 0 2px;
+  min-height: 26px;
 }
 
 /* Empty placeholders (Working papers / WIP) */
@@ -595,4 +647,8 @@ body::after {
   .edu-item { flex-direction: column; gap: 2px; }
   .news-item { flex-direction: column; gap: 2px; }
   .news-date { width: auto; }
+  /* 窄屏：图放上面、概括放下面，避免图被压成一条 */
+  .pub-body { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .pub-figure { width: 140px; }
+  .pub-summary { max-width: none; font-size: 14.5px; }
 }
