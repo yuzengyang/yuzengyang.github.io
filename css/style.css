@@ -25,15 +25,27 @@
   --surface: #ffffff;
 
   /* ---- Type ----
-     标题与论文题用衬线（Georgia），正文用无衬线（Segoe UI）。
-     理由：Georgia 的 x-height 只有 0.481（Segoe UI 是 0.500）、
-     字宽也窄（0.440 vs 0.539），做正文偏小偏挤，做标题反而精致；
-     但必须给它更大字号才显得出分量 —— 这是"标题不明显"的根因。
-     中文跟随：标题走宋体与衬线呼应，正文走黑体保证小字清晰。 */
+     两套栈，各管一件事：
+
+     ① 标题/姓名/论文题 —— 衬线，Georgia 领衔。
+        Georgia 的 x-height 只有 0.481、字宽 0.440（Calibri 是 0.464 / 0.521），
+        做正文偏小偏挤，做标题反而精致；但必须给更大字号才显得出分量。
+
+     ② 正文/条目 —— 无衬线，Calibri 领衔（2026-09-30 起）。
+        原来是 Segoe UI：字面窄、观感平淡；Calibri 字面开阔、字距舒展，
+        小字号下明显更清爽。
+
+     ⚠️ 中文回退是这次的关键修正：
+        两条栈都**只用「微软雅黑 / 苹方」这一路黑体**，不再回退到宋体。
+        原因：宋体(SimSun)小字号下发虚、横细竖粗，在 Windows 上是最显旧的观感；
+        站点里中文并不多（姓名括号、栏目标题、会议中文名），但都被它拖累了。
+        取舍：牺牲"标题中文与 Georgia 的宋体呼应"，换取全站中文一致、清爽。 */
   --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino,
-                  "Songti SC", STSong, "SimSun", "Times New Roman", serif;
-  --font-body: "Segoe UI", "Helvetica Neue", -apple-system, "PingFang SC",
-               "Microsoft YaHei", "Hiragino Sans GB", Arial, sans-serif;
+                  "Times New Roman", "Songti SC", "Microsoft YaHei",
+                  "PingFang SC", serif;
+  --font-body: Calibri, "Segoe UI", -apple-system, "Helvetica Neue",
+               "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", Arial,
+               sans-serif;
 
   /* ==========================================================================
      字号体系（type scale）
