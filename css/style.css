@@ -62,29 +62,29 @@
      2026-09-30：--ts 由 15.5 提到 17px（他要求"字体大一点"），
                  同时正文改用 Cambria，行宽收窄到 68ch 保证易读。
      ========================================================================== */
-  --ts: 17px;
+  --ts: 19.5px;
 
   --fs-h1:        calc(var(--ts) * 2.13);  /* 姓名            36.2px */
-  --fs-page:      calc(var(--ts) * 1.85);  /* 页标题          31.5px */
-  --fs-h2:        calc(var(--ts) * 1.24);  /* 栏目标题        21px   */
-  --fs-brand:     calc(var(--ts) * 1.13);  /* 导航品牌名      19.2px */
-  --fs-lead:      calc(var(--ts) * 1.12);  /* 论文题目        19px   */
-  --fs-title:     calc(var(--ts) * 1.08);  /* 条目标题/教育学位 18.4px */
-  --fs-body:      calc(var(--ts) * 1.03);  /* 正文            17.5px */
-  --fs-sub:       calc(var(--ts) * 0.99);  /* 会议名/新闻正文  16.8px */
-  --fs-item:      calc(var(--ts) * 0.95);  /* 简介、院校名     16.2px */
-  --fs-small:     calc(var(--ts) * 0.91);  /* 联系方式        15.5px */
-  --fs-note:      calc(var(--ts) * 0.87);  /* 作者行          14.8px */
-  --fs-label:     calc(var(--ts) * 0.84);  /* 日期/页脚/标签   14.3px */
-  --fs-micro:     calc(var(--ts) * 0.73);  /* DOI 等极小字    12.4px */
+  --fs-page:      calc(var(--ts) * 1.74);  /* 页标题          35.5px */
+  --fs-h2:        calc(var(--ts) * 1.25);  /* 栏目标题        24.4px */
+  --fs-brand:     calc(var(--ts) * 1.08);  /* 导航品牌名      22px   */
+  --fs-lead:      calc(var(--ts) * 1.08);  /* 论文题目        22px   */
+  --fs-title:     calc(var(--ts) * 1.04);  /* 条目标题/教育学位 21.2px */
+  --fs-body:      calc(var(--ts) * 1.03);  /* 正文            21px   */
+  --fs-sub:       calc(var(--ts) * 0.99);  /* 会议名/新闻正文  20.2px */
+  --fs-item:      calc(var(--ts) * 0.95);  /* 简介、院校名     19.4px */
+  --fs-small:     calc(var(--ts) * 0.91);  /* 联系方式        18.6px */
+  --fs-note:      calc(var(--ts) * 0.87);  /* 作者行          17.7px */
+  --fs-label:     calc(var(--ts) * 0.83);  /* 日期/页脚/标签   16.9px */
+  --fs-micro:     calc(var(--ts) * 0.74);  /* DOI 等极小字    15.1px */
 
-  /* 行高：衬线正文比无衬线需要更松，1.72 是 Cambria 的舒适区 */
-  --lh-display: 1.16;   /* 姓名 */
-  --lh-page:    1.20;   /* 页标题 */
-  --lh-head:    1.30;   /* 栏目标题 */
-  --lh-title:   1.40;   /* 条目标题 / 论文题目 */
-  --lh-tight:   1.55;   /* 小号说明文字 */
-  --lh-body:    1.72;   /* 正文（衬线） */
+  /* 行高：字号越大，行高可以略收（仍然宽松）；衬线正文 1.78 读起来舒展 */
+  --lh-display: 1.14;   /* 姓名 */
+  --lh-page:    1.18;   /* 页标题 */
+  --lh-head:    1.28;   /* 栏目标题 */
+  --lh-title:   1.38;   /* 条目标题 / 论文题目 */
+  --lh-tight:   1.52;   /* 小号说明文字 */
+  --lh-body:    1.78;   /* 正文（衬线，中文友好） */
   --lh-item:    1.45;   /* 单行条目 */
 
   /* 字距：大字号收紧、小字号略放开 —— 这是"精致"和"业余"的分界线 */
@@ -97,9 +97,9 @@
   --ls-label:   0.3px;
   --ls-caps:    0.7px;
 
-  /* 正文行宽：按字号换算 ≈68 个字符 —— 再宽眼睛回行会累。
-     960px 容器下长文本会被收到这个宽度，短条目（日期+一句话）不受影响。 */
-  --measure: 68ch;
+  /* 正文行宽：按字号换算 ≈76 个字符 —— 再宽眼睛回行会累。
+     容器加宽到 1000px 后，长文本收到 ≈780px，右侧留白自然。 */
+  --measure: 76ch;
 
 
   --radius: 10px;
@@ -200,7 +200,7 @@ body::after {
 }
 
 .nav-inner {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
@@ -287,7 +287,7 @@ body::after {
    -------------------------------------------------------------------------- */
 
 .container {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 40px 24px 64px;
 }
@@ -725,7 +725,7 @@ body::after {
 
 /* Footer */
 .footer {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px 24px 36px;
   border-top: 1px solid var(--morandi-200);
