@@ -25,25 +25,29 @@
   --surface: #ffffff;
 
   /* ---- Type ----
-     两套栈，各管一件事：
+     分两路，这是本站排版的骨架：
 
-     ① 标题/姓名/论文题 —— 衬线，Georgia 领衔。
-        Georgia 的 x-height 只有 0.481、字宽 0.440（Calibri 是 0.464 / 0.521），
-        做正文偏小偏挤，做标题反而精致；但必须给更大字号才显得出分量。
+     ① 衬线（serif）—— 承载所有"要读"的文字
+        标题、姓名、论文题目、简介、Bio 正文、News 正文、致谢、会议名。
+        字体：Cambria 领衔。它是微软为屏幕阅读设计的衬线体，
+              x-height 0.467、字宽 0.615，比 Georgia(0.481/0.440) 更宽更饱满，
+              小字号上屏也端整 —— 所以**适合做正文**，不只是标题。
+              Georgia 退居第二（本机没有 Cambria 时用）。
 
-     ② 正文/条目 —— 无衬线，Calibri 领衔（2026-09-30 起）。
-        原来是 Segoe UI：字面窄、观感平淡；Calibri 字面开阔、字距舒展，
-        小字号下明显更清爽。
+     ② 无衬线（sans）—— 承载"要快扫"的文字
+        日期、标签、期刊名、DOI、联系方式、导航、页脚。
+        字体：Calibri 领衔（与 Cambria 是同一套设计组合，气质一致）。
 
-     ⚠️ 中文回退是这次的关键修正：
-        两条栈都**只用「微软雅黑 / 苹方」这一路黑体**，不再回退到宋体。
-        原因：宋体(SimSun)小字号下发虚、横细竖粗，在 Windows 上是最显旧的观感；
-        站点里中文并不多（姓名括号、栏目标题、会议中文名），但都被它拖累了。
-        取舍：牺牲"标题中文与 Georgia 的宋体呼应"，换取全站中文一致、清爽。 */
-  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino,
-                  "Times New Roman", "Songti SC", "Microsoft YaHei",
+     中文回退：**两条栈都用微软雅黑 / 苹方**，不退回宋体。
+        理由：宋体(SimSun)小字号发虚、横细竖粗，在 Windows 上最显旧。
+        代价是标题里的中文不与衬线呼应 —— 这个取舍是刻意的，
+        换来的是全站中文一致、清爽（见 _typography/README.md）。 */
+  --font-display: Cambria, Georgia, "Iowan Old Style", "Palatino Linotype",
+                  Palatino, "Times New Roman", "Songti SC", "Microsoft YaHei",
                   "PingFang SC", serif;
-  --font-body: Calibri, "Segoe UI", -apple-system, "Helvetica Neue",
+  --font-body: Cambria, Georgia, "Times New Roman", "Songti SC",
+               "Microsoft YaHei", "PingFang SC", serif;
+  --font-sans: Calibri, "Segoe UI", -apple-system, "Helvetica Neue",
                "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", Arial,
                sans-serif;
 
@@ -53,36 +57,38 @@
      否则东一个 15.5 西一个 13.5，页面就会显得杂。
      校验脚本会检查这一点：_inspection/src/verify_typography.py
 
-     做法：先定基准 --ts（当前 15.5px），其余全部按倍率算。
+     做法：先定基准 --ts，其余全部按倍率算。
      想整体放大/缩小，只改 --ts 一个数即可。
+     2026-09-30：--ts 由 15.5 提到 17px（他要求"字体大一点"），
+                 同时正文改用 Cambria，行宽收窄到 68ch 保证易读。
      ========================================================================== */
-  --ts: 15.5px;
+  --ts: 17px;
 
-  --fs-h1:        calc(var(--ts) * 2.39);  /* 姓名           37px */
-  --fs-page:      calc(var(--ts) * 2.00);  /* 页标题         31px */
-  --fs-h2:        calc(var(--ts) * 1.39);  /* 栏目标题       21.5px */
-  --fs-brand:     calc(var(--ts) * 1.23);  /* 导航品牌名     19px */
-  --fs-lead:      calc(var(--ts) * 1.13);  /* 醒目条目（论文题目）17.5px */
-  --fs-title:     calc(var(--ts) * 1.10);  /* 条目标题、正文强调 17px */
-  --fs-body:      calc(var(--ts) * 1.06);  /* 正文           16.5px */
-  --fs-sub:       calc(var(--ts) * 1.00);  /* 条目标题、简介  15.5px */
-  --fs-item:      calc(var(--ts) * 0.97);  /* 列表条目、说明   15px */
-  --fs-small:     calc(var(--ts) * 0.94);  /* 次要信息、联系方式14.5px */
-  --fs-note:      calc(var(--ts) * 0.90);  /* 元信息、作者行   14px */
-  --fs-label:     calc(var(--ts) * 0.87);  /* 标签、日期       13.5px */
-  --fs-micro:     calc(var(--ts) * 0.77);  /* 极小标签 DOI 等   12px */
+  --fs-h1:        calc(var(--ts) * 2.13);  /* 姓名            36.2px */
+  --fs-page:      calc(var(--ts) * 1.85);  /* 页标题          31.5px */
+  --fs-h2:        calc(var(--ts) * 1.24);  /* 栏目标题        21px   */
+  --fs-brand:     calc(var(--ts) * 1.13);  /* 导航品牌名      19.2px */
+  --fs-lead:      calc(var(--ts) * 1.12);  /* 论文题目        19px   */
+  --fs-title:     calc(var(--ts) * 1.08);  /* 条目标题/教育学位 18.4px */
+  --fs-body:      calc(var(--ts) * 1.03);  /* 正文            17.5px */
+  --fs-sub:       calc(var(--ts) * 0.99);  /* 会议名/新闻正文  16.8px */
+  --fs-item:      calc(var(--ts) * 0.95);  /* 简介、院校名     16.2px */
+  --fs-small:     calc(var(--ts) * 0.91);  /* 联系方式        15.5px */
+  --fs-note:      calc(var(--ts) * 0.87);  /* 作者行          14.8px */
+  --fs-label:     calc(var(--ts) * 0.84);  /* 日期/页脚/标签   14.3px */
+  --fs-micro:     calc(var(--ts) * 0.73);  /* DOI 等极小字    12.4px */
 
-  /* 行高：中文比英文需要更松，正文 1.8 是舒适区 */
-  --lh-display: 1.18;   /* 姓名 */
-  --lh-page:    1.22;   /* 页标题 */
-  --lh-head:    1.32;   /* 栏目标题 */
-  --lh-title:   1.42;   /* 条目标题 / 论文题目 */
+  /* 行高：衬线正文比无衬线需要更松，1.72 是 Cambria 的舒适区 */
+  --lh-display: 1.16;   /* 姓名 */
+  --lh-page:    1.20;   /* 页标题 */
+  --lh-head:    1.30;   /* 栏目标题 */
+  --lh-title:   1.40;   /* 条目标题 / 论文题目 */
   --lh-tight:   1.55;   /* 小号说明文字 */
-  --lh-body:    1.80;   /* 正文（中文友好） */
+  --lh-body:    1.72;   /* 正文（衬线） */
   --lh-item:    1.45;   /* 单行条目 */
 
   /* 字距：大字号收紧、小字号略放开 —— 这是"精致"和"业余"的分界线 */
-  --ls-display: -0.4px;
+  --ls-display: -0.5px;
   --ls-page:    -0.3px;
   --ls-head:    0.1px;
   --ls-lead:    -0.1px;
@@ -90,6 +96,11 @@
   --ls-small:   0.15px;
   --ls-label:   0.3px;
   --ls-caps:    0.7px;
+
+  /* 正文行宽：按字号换算 ≈68 个字符 —— 再宽眼睛回行会累。
+     960px 容器下长文本会被收到这个宽度，短条目（日期+一句话）不受影响。 */
+  --measure: 68ch;
+
 
   --radius: 10px;
   --shadow: 0 1px 3px rgba(61, 82, 104, 0.08);
@@ -238,6 +249,7 @@ body::after {
   border-radius: 8px;
   text-decoration: none;
   transition: color 0.2s, background 0.2s;
+  font-family: var(--font-sans);
 }
 
 .nav-links a::after {
@@ -324,6 +336,7 @@ body::after {
   font-size: var(--fs-small);
   line-height: var(--lh-body);
   color: var(--text-muted);
+  font-family: var(--font-sans);
 }
 
 .contact-list li {
@@ -457,7 +470,9 @@ body::after {
 }
 
 /* Bio */
-.bio p { margin-bottom: 12px; }
+.bio p { margin-bottom: 12px;   max-width: var(--measure);
+  font-family: var(--font-body);
+}
 
 .bio em {
   font-family: var(--font-display);
@@ -479,15 +494,19 @@ body::after {
 
 .edu-item:last-child { border-bottom: none; }
 
-.edu-degree { font-weight: 600; font-size: var(--fs-body); color: var(--text-main); }
-.edu-status { font-size: var(--fs-label); font-weight: 400; color: var(--text-faint); }
-.edu-school { color: var(--text-muted); font-size: var(--fs-item); line-height: var(--lh-tight); }
+.edu-degree { font-weight: 600; font-size: var(--fs-body); color: var(--text-main);   font-family: var(--font-body);
+}
+.edu-status { font-size: var(--fs-label); font-weight: 400; color: var(--text-faint);   font-family: var(--font-sans);
+}
+.edu-school { color: var(--text-muted); font-size: var(--fs-item); line-height: var(--lh-tight);   font-family: var(--font-sans);
+}
 .edu-years {
   flex-shrink: 0;
   font-size: var(--fs-label);
   letter-spacing: var(--ls-label);
   color: var(--text-faint);
   font-variant-numeric: tabular-nums;
+  font-family: var(--font-sans);
 }
 
 /* 滚动容器：仅 News 使用（Publications 已改为整页展开、无滚轮） */
@@ -535,9 +554,12 @@ body::after {
   letter-spacing: var(--ls-caps);
   color: var(--text-faint);
   font-variant-numeric: tabular-nums;
+  font-family: var(--font-sans);
 }
 
-.news-text { color: var(--text-main); font-size: var(--fs-sub); line-height: var(--lh-tight); }
+.news-text { color: var(--text-main); font-size: var(--fs-sub); line-height: var(--lh-tight);   max-width: var(--measure);
+  font-family: var(--font-body);
+}
 
 /* --------------------------------------------------------------------------
    Publications
@@ -576,6 +598,7 @@ body::after {
   line-height: var(--lh-tight);
   color: var(--text-faint);
   margin-bottom: 14px;
+  font-family: var(--font-sans);
 }
 
 .pub-meta .self {
@@ -595,6 +618,7 @@ body::after {
   font-size: var(--fs-micro);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
+  font-family: var(--font-sans);
 }
 
 /* Publications 版式：
@@ -647,6 +671,8 @@ body::after {
   font-size: var(--fs-item);
   font-style: italic;
   padding: 6px 0 2px;
+  max-width: var(--measure);
+  font-family: var(--font-body);
 }
 
 /* Presentations
@@ -666,6 +692,7 @@ body::after {
   line-height: var(--lh-title);
   color: var(--text-main);
   max-width: 68ch;
+  font-family: var(--font-body);
 }
 
 .pres-zh {
@@ -674,6 +701,7 @@ body::after {
   font-size: var(--fs-label);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-small);
+  font-family: var(--font-sans);
 }
 
 /* Page title for inner pages */
@@ -688,7 +716,9 @@ body::after {
 }
 
 /* Acknowledgments */
-.ack-note { color: var(--text-muted); font-size: var(--fs-sub); margin-bottom: 11px; }
+.ack-note { color: var(--text-muted); font-size: var(--fs-sub); margin-bottom: 11px;   max-width: var(--measure);
+  font-family: var(--font-body);
+}
 .ack-note:last-child { margin-bottom: 0; }
 .ack-note a { color: var(--morandi-600); }
 .ack-note a:hover { color: var(--morandi-700); }
@@ -703,6 +733,7 @@ body::after {
   font-size: var(--fs-label);
   letter-spacing: var(--ls-small);
   text-align: center;
+  font-family: var(--font-sans);
 }
 
 /* --------------------------------------------------------------------------
