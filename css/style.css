@@ -74,7 +74,7 @@
   --fs-sub:       calc(var(--ts) * 1.02);  /* 会议名/新闻正文  20.2px */
   --fs-item:      calc(var(--ts) * 0.96);  /* 简介、院校名     19.4px */
   --fs-small:     calc(var(--ts) * 0.91);  /* 联系方式        18.6px */
-  --fs-note:      calc(var(--ts) * 0.885);  /* 作者行          17.7px */
+  --fs-note:      calc(var(--ts) * 0.97);  /* 作者行/期刊行    16.2px */
   --fs-label:     calc(var(--ts) * 0.845);  /* 日期/页脚/标签   16.9px */
   --fs-micro:     calc(var(--ts) * 0.75);  /* DOI 等极小字    15.1px */
 
@@ -111,7 +111,7 @@
      数值按 100% 基准记账（如 --space-5 设计值 18px），
      实际渲染尺寸 = 设计值 × (--ts / 基准)。
      ========================================================================== */
-  --w-page: 57.2973em;
+  --w-page: 50.2703em;
   --w-nav-scrolled: 43.2432em;
   --pad-x: 1.2973em;
   --pad-top: 2.1622em;
@@ -513,7 +513,7 @@ body::after {
 }
 
 /* Bio */
-.bio p { margin-bottom: var(--space-5);   max-width: var(--measure);
+.bio p { margin-bottom: var(--space-5);
   font-family: var(--font-body);
   }
 
@@ -601,7 +601,7 @@ body::after {
   font-family: var(--font-sans);
 }
 
-.news-text { color: var(--text-main); font-size: var(--fs-sub); line-height: var(--lh-body);   max-width: var(--measure);
+.news-text { color: var(--text-main); font-size: var(--fs-sub); line-height: var(--lh-body);
   font-family: var(--font-body);
 }
 
@@ -699,7 +699,6 @@ body::after {
   font-size: var(--fs-item);
   line-height: var(--lh-body);
   color: var(--text-muted);
-  max-width: 62ch;
   margin: 0;
 }
 
@@ -715,7 +714,6 @@ body::after {
   font-size: var(--fs-item);
   font-style: italic;
   padding: var(--space-2) 0 var(--space-16);
-  max-width: var(--measure);
   font-family: var(--font-body); line-height: var(--lh-body); }
 
 /* Presentations
@@ -734,7 +732,6 @@ body::after {
   font-size: var(--fs-sub);
   line-height: var(--lh-title);
   color: var(--text-main);
-  max-width: 68ch;
   font-family: var(--font-body);
 }
 
@@ -759,7 +756,7 @@ body::after {
 }
 
 /* Acknowledgments */
-.ack-note { color: var(--text-muted); font-size: var(--fs-sub); margin-bottom: var(--space-5);   max-width: var(--measure);
+.ack-note { color: var(--text-muted); font-size: var(--fs-sub); margin-bottom: var(--space-5);
   font-family: var(--font-body); line-height: var(--lh-body); }
 .ack-note:last-child { margin-bottom: 0; }
 .ack-note a { color: var(--morandi-600); }
