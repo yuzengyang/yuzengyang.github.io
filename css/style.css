@@ -62,7 +62,7 @@
      2026-09-30：--ts 由 15.5 提到 17px（他要求"字体大一点"），
                  同时正文改用 Cambria，行宽收窄到 68ch 保证易读。
      ========================================================================== */
-  --ts: 19.5px;
+  --ts: 18.5px;
 
   --fs-h1:        calc(var(--ts) * 2.13);  /* 姓名            36.2px */
   --fs-page:      calc(var(--ts) * 1.74);  /* 页标题          35.5px */
@@ -84,7 +84,7 @@
   --lh-head:    1.28;   /* 栏目标题 */
   --lh-title:   1.38;   /* 条目标题 / 论文题目 */
   --lh-tight:   1.72;   /* 小号说明文字 */
-  --lh-body:    1.95;   /* 正文（衬线，中文友好） */
+  --lh-body:    1.88;   /* 正文（衬线，中文友好） */
   --lh-item:    1.45;   /* 单行条目 */
 
   /* 字距：大字号收紧、小字号略放开 —— 这是"精致"和"业余"的分界线 */
@@ -118,9 +118,6 @@ body {
   font-feature-settings: "kern" 1, "liga" 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  /* 让 text-align: justify 生效时能自动断词 —— Safari 只认 -webkit- 前缀 */
-  -webkit-hyphens: auto;
-  hyphens: auto;
   background:
     linear-gradient(180deg, rgba(207, 226, 241, 0.40) 0%, rgba(207, 226, 241, 0.20) 16%, rgba(207, 226, 241, 0) 38%),
     radial-gradient(600px 420px at 18% 12%, rgba(255, 255, 255, 0.70) 0%, transparent 68%),
@@ -371,7 +368,7 @@ body::after {
    -------------------------------------------------------------------------- */
 
 .section {
-  margin-bottom: 60px;
+  margin-bottom: 46px;
   /* 顶部导航是 sticky 的，锚点跳转时留出它的高度，标题不会被盖住 */
   scroll-margin-top: 76px;
 }
@@ -473,18 +470,10 @@ body::after {
 }
 
 /* Bio */
-.bio p { margin-bottom: 18px;   max-width: var(--measure);
+.bio p { margin-bottom: 14px;   max-width: var(--measure);
   font-family: var(--font-body);
-  /* 两端对齐：右侧也齐平，整段更齐整大气。
-     字号不变；-webkit-hyphens 处理两端的英文长词，避免出现过大字距。 */
-  text-align: justify;
-  text-justify: inter-word;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-}
+  }
 
-/* 引言那句保持左对齐 —— 两端对齐只对成段正文有意义 */
-.bio p em { text-align: left; }
 
 .bio em {
   font-family: var(--font-display);
@@ -500,7 +489,7 @@ body::after {
   justify-content: space-between;
   align-items: baseline;
   gap: 16px;
-  padding: 18px 0;
+  padding: 13px 0;
   border-bottom: 1px solid var(--morandi-200);
 }
 
@@ -550,7 +539,7 @@ body::after {
 .news-item {
   display: flex;
   gap: 14px;
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--morandi-200);
   align-items: baseline;
 }
@@ -580,8 +569,8 @@ body::after {
    -------------------------------------------------------------------------- */
 
 .pub-item {
-  margin-bottom: 44px;
-  padding-bottom: 38px;
+  margin-bottom: 34px;
+  padding-bottom: 30px;
   border-bottom: 1px solid var(--morandi-200);
 }
 
@@ -691,7 +680,7 @@ body::after {
    遇到长会议名就被压得又窄又难看。改成上下两行：英文在上、中文在下，
    两条都左对齐，长名字自然折行，读起来顺。 */
 .pres-item {
-  padding: 18px 0;
+  padding: 13px 0;
   border-bottom: 1px solid var(--morandi-200);
 }
 
@@ -727,7 +716,7 @@ body::after {
 }
 
 /* Acknowledgments */
-.ack-note { color: var(--text-muted); font-size: var(--fs-sub); margin-bottom: 18px;   max-width: var(--measure);
+.ack-note { color: var(--text-muted); font-size: var(--fs-sub); margin-bottom: 14px;   max-width: var(--measure);
   font-family: var(--font-body); line-height: var(--lh-body); }
 .ack-note:last-child { margin-bottom: 0; }
 .ack-note a { color: var(--morandi-600); }
